@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AryanCloud</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+  <!-- AUTH SECTION -->
+  <section id="authSection" class="auth-section">
+
+    <div class="auth-card">
+
+      <div class="logo">
+        ☁️
+      </div>
+
+      <h1>AryanCloud</h1>
+      <p class="subtitle">Your private space for photos</p>
+
+      <!-- LOGIN -->
+      <div id="loginBox">
+
+        <h2>Welcome Back</h2>
+        <p class="small-text">Login to access your cloud</p>
+
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Email address"
+        >
+
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Password"
+        >
+
+        <button onclick="login()" class="primary-btn">
+          Login
+        </button>
+
+        <p class="switch-text">
+          Don't have an account?
+          <span onclick="showSignup()">Create Account</span>
+        </p>
+
+      </div>
+
+
+      <!-- SIGNUP -->
+      <div id="signupBox" class="hidden">
+
+        <h2>Create Account</h2>
+        <p class="small-text">Create your AryanCloud account</p>
+
+        <input
+          type="email"
+          id="signupEmail"
+          placeholder="Email address"
+        >
+
+        <input
+          type="password"
+          id="signupPassword"
+          placeholder="Create password"
+        >
+
+        <input
+          type="password"
+          id="signupConfirm"
+          placeholder="Confirm password"
+        >
+
+        <button onclick="signup()" class="primary-btn">
+          Create Account
+        </button>
+
+        <p class="switch-text">
+          Already have an account?
+          <span onclick="showLogin()">Login</span>
+        </p>
+
+      </div>
+
+      <p id="authMessage"></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="hidden">
+
+    <header class="navbar">
+
+      <div class="brand">
+        ☁️ AryanCloud
+      </div>
+
+      <button onclick="logout()" class="logout-btn">
+        Logout
+      </button>
+
+    </header>
+
+
+    <main class="dashboard-container">
+
+      <div class="welcome">
+        <div>
+          <p class="tag">PRIVATE CLOUD</p>
+          <h1>My Photos</h1>
+          <p>Store and protect your memories securely.</p>
+        </div>
+
+        <label class="upload-btn">
+          + Upload Photo
+          <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+            onchange="uploadPhoto()"
+            hidden
+          >
+        </label>
+      </div>
+
+
+      <div id="loading" class="hidden loading">
+        Uploading...
+      </div>
+
+
+      <div id="emptyState" class="empty-state">
+
+        <div class="empty-icon">
+          🖼️
+        </div>
+
+        <h2>No photos yet</h2>
+
+        <p>
+          Upload your first photo to AryanCloud.
+        </p>
+
+      </div>
+
+
+      <div id="photoGrid" class="photo-grid"></div>
+
+    </main>
+
+  </section>
+
+
+  <!-- PIN MODAL -->
+  <div id="pinModal" class="modal hidden">
+
+    <div class="modal-card">
+
+      <button class="close-btn" onclick="closePinModal()">
+        ×
+      </button>
+
+      <div class="lock-icon">
+        🔒
+      </div>
+
+      <h2>Photo Locked</h2>
+
+      <p>
+        Enter your PIN to view this photo.
+      </p>
+
+      <input
+        type="password"
+        id="pinInput"
+        maxlength="6"
+        inputmode="numeric"
+        placeholder="Enter PIN"
+      >
+
+      <button onclick="unlockPhoto()" class="primary-btn">
+        Unlock
+      </button>
+
+      <p id="pinMessage"></p>
+
+    </div>
+
+  </div>
+
+
+  <!-- IMAGE VIEWER -->
+  <div id="imageModal" class="modal hidden">
+
+    <div class="image-viewer">
+
+      <button
+        class="close-btn"
+        onclick="closeImageModal()">
+        ×
+      </button>
+
+      <img id="fullImage" src="" alt="Photo">
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
